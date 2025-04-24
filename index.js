@@ -77,8 +77,7 @@ app.post("/gpt", async (req, res) => {
 });
 
 app.post("/message", async (req, res) => {
-  console.log("Req: ", req);
-  console.log("Res: ", res);
+  res.json(req.body);
 });
 
 app.listen(process.env.PORT, () => {
