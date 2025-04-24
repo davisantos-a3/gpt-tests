@@ -77,6 +77,7 @@ app.post("/gpt", async (req, res) => {
 });
 
 app.post("/message", async (req, res) => {
+  console.log(req.body);
   res.json(req.body);
 });
 
