@@ -69,9 +69,9 @@ async function sendMessageToGuru(message, res, celular) {
 }
 
 app.post("/message/gpt", async (req, res) => {
-  const { userId, mensagem, celular } = req.body;
+  const { userId, texto_mensagem, celular } = req.body;
 
-  const resposta = await processMessage(mensagem, userId);
+  const resposta = await processMessage(texto_mensagem);
 
   await sendMessageToGuru(resposta, res, celular);
 });
