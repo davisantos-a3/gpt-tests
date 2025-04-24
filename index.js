@@ -42,9 +42,9 @@ async function processMessage(message, userId) {
   }
 }
 
-async function sendMessageToGuru(message, res) {
+async function sendMessageToGuru(message, res, celular) {
   try {
-    const resposta = await Axios.post(
+    await Axios.post(
       "https://s9.chatguru.app/api/v1",
       {
         action: "message_send",
@@ -52,7 +52,7 @@ async function sendMessageToGuru(message, res) {
         key: process.env.GURU_KEY,
         account_id: process.env.GURU_ACCOUNT_ID,
         phone_id: process.env.GURU_PHONE_ID,
-        chat_number: "",
+        chat_number: celular,
       },
       {
         headers: {
@@ -61,19 +61,19 @@ async function sendMessageToGuru(message, res) {
       }
     );
 
-    res.json({ resposta });
+    res.json("Mensagem enviada com sucesso!!");
   } catch (error) {
     console.error("Erro na API:", error?.response?.data || error.message);
     res.status(500).json({ erro: "Erro ao enviar mensagem." });
   }
 }
 
-app.post("/gpt", async (req, res) => {
-  const { userId, mensagem } = req.body;
+app.post("/message/gpt", async (req, res) => {
+  const { userId, mensagem, celular } = req.body;
 
   const resposta = await processMessage(mensagem, userId);
 
-  await sendMessageToGuru(resposta, res);
+  await sendMessageToGuru(resposta, res, celular);
 });
 
 app.post("/message", async (req, res) => {
