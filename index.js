@@ -49,10 +49,10 @@ async function sendMessageToGuru(message, res) {
       {
         action: "message_send",
         text: message,
-        key: "N6SL1EZL1J082OLY858KCL61B97WDFOZEBFJS0V567RJ7EBZQRKOBPYJZRQ1UZEZ",
-        account_id: "6050ed7630e676857fb828f9",
-        phone_id: "6050fe9139cc0893b6d8c5a4",
-        chat_number: "5511960181150",
+        key: process.env.GURU_KEY,
+        account_id: process.env.GURU_ACCOUNT_ID,
+        phone_id: process.env.GURU_PHONE_ID,
+        chat_number: "",
       },
       {
         headers: {
