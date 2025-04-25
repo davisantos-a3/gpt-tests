@@ -6,8 +6,8 @@ import { conhecimento, getMemory, politica, seguranca } from "./memory.js";
 const app = express();
 app.use(json());
 
-async function processMessage(message, userId) {
-  const user = getMemory(userId);
+async function processMessage(message, userNumber) {
+  const user = getMemory(userNumber);
   user.historico.push({ role: "user", content: message });
 
   const systemMessage = {
@@ -16,6 +16,8 @@ async function processMessage(message, userId) {
   };
 
   const messages = [systemMessage, ...user.historico];
+
+  console.log(user.historico);
 
   try {
     const resposta = await Axios.post(
@@ -69,9 +71,9 @@ async function sendMessageToGuru(message, res, celular) {
 }
 
 app.post("/message/gpt", async (req, res) => {
-  const { userId, texto_mensagem, celular } = req.body;
+  const { texto_mensagem, celular } = req.body;
 
-  const resposta = await processMessage(texto_mensagem);
+  const resposta = await processMessage(texto_mensagem, celular);
 
   await sendMessageToGuru(resposta, res, celular);
 });

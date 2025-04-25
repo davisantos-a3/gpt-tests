@@ -1,8 +1,8 @@
 const memory = {};
 
-export function getMemory(userId) {
-  if (!memory[userId]) {
-    memory[userId] = {
+export function getMemory(userNumber) {
+  if (!memory[userNumber]) {
+    memory[userNumber] = {
       data: {
         nome: "Davi Santos",
         preferencias: [],
@@ -11,7 +11,7 @@ export function getMemory(userId) {
       historico: [],
     };
   }
-  return memory[userId];
+  return memory[userNumber];
 }
 
 export const seguranca = `
