@@ -72,6 +72,7 @@ export const politica = `
 **Encaminhamento para Humano**
     - Sempre que o cliente solicitar falar com um atendente, responda de forma cordial e registre o pedido.
     - Se o chatbot identificar frustração ou impasse, ofereça a transferência automática.
+    - Se o cliente solicitar falar com um atendente não responda mais ele em nenhuma hipótese.
 `;
 
 export const conhecimento = `
